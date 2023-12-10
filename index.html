@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Heartfelt Apology</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background-color 0.5s;
+        }
+
+        .lovely {
+            background-color: #f8f8f8;
+        }
+
+        .romantic {
+            background-color: #ffdbdb;
+        }
+
+        .angry {
+            background-color: #ff6961;
+        }
+
+        h1 {
+            color: #d9534f;
+            font-size: 2em;
+            margin: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.6;
+            text-align: justify;
+            max-width: 600px;
+            margin: 15px 20px;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+        }
+
+        button {
+            flex: 1;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        #loveButton {
+            background-color: #e73859;
+        }
+
+        #angryButton {
+            background-color: #e73859;
+        }
+
+        button:hover {
+            background-color: #d9534f;
+        }
+
+
+        .emoji-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 1.5em;
+            display: inline-block;
+            white-space: nowrap;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall 1.5s ease-in-out;
+        }
+
+        .heart {
+            color: #d9534f;
+        }
+
+        .angry-emoji {
+            color: #d9534f;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        @media (max-width: 600px) {
+            p {
+                margin: 15px 10px;
+                text-align: justify;
+            }
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body class="lovely">
+    <h1><span class="heart">❤</span> A Heartfelt Apology <span class="heart">❤</span></h1>
+    <p>My Dearest Nipuni,</p>
+
+    <p>I hope this message finds you in good health. With a heavy heart, I write to express my deepest apologies for the pain I've caused you. Words seem inadequate to convey the remorse I feel, realizing the profound hurt my actions have inflicted upon you.</p>
+
+    <p>Please understand that I am genuinely sorry from the depths of my soul. I never intended to bring you any anguish, and witnessing your pain fills me with profound regret. I comprehend that mere words cannot erase the past, yet I fervently hope you can find it within yourself to grant me forgiveness.</p>
+
+    <p>Our love is the most precious thing in my life, and the mere thought of jeopardizing it is agonizing. I am committed to doing whatever it takes to rebuild the trust I've lost, aspiring to become the person you deserve. This experience serves as a catalyst for my personal growth, aiming for a stronger, more resilient connection between us.</p>
+
+    <p>I pledge to demonstrate my remorse through actions, proving that I am genuinely sorry. Your happiness is my utmost priority, and I am dedicated to showcasing my capability for change and growth. Take all the time you need, and if you find it in your heart to forgive me, I will be eternally grateful.</p>
+
+    <p>Your absence is profoundly felt, and I long for the day when I can make amends for the pain I've caused.</p>
+
+    <p>With all my love,</p>
+    <p>Duli</p>
+
+    <div class="buttons-container">
+        <button id="loveButton" onclick="showEmoji('heart')">Express Love</button>
+        <button id="angryButton" onclick="showEmoji('angry-emoji')">Show Anger</button>
+    </div>
+
+    <div class="emoji-rain" id="emojiRain"></div>
+
+    <script>
+        function showEmoji(type) {
+            const emojiRain = document.getElementById('emojiRain');
+            emojiRain.innerHTML = '';
+
+            const emojiCount = 30;
+            const emojis = [];
+            const emojiContainer = document.createElement('div');
+
+            for (let i = 0; i < emojiCount; i++) {
+                const emoji = document.createElement('span');
+                emoji.className = 'emoji ' + type;
+                emoji.innerHTML = type === 'heart' ? '❤' : '😠';
+
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                emoji.style.left = posX + 'px';
+                emoji.style.top = posY + 'px';
+
+                emojis.push(emoji);
+                emojiContainer.appendChild(emoji);
+            }
+
+            emojiRain.appendChild(emojiContainer);
+
+            emojiContainer.addEventListener('animationend', function () {
+                emojiRain.innerHTML = '';
+            });
+
+            // Change the body class to adjust the background color
+            document.body.className = type === 'heart' ? 'romantic' : 'angry';
+        }
+    </script>
+</body>
+</html>
